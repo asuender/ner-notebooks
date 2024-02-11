@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>ANGABE</title>
+</head>
+<body><h1 id='gkxxxx-data-science-ner-classification-posa'>GKXXXX Data Science &quot;NER Classification&quot; (POSA)</h1>
+<h2 id='data-science-ner-classification---taskdescription'>Data Science &quot;NER Classification&quot; - Taskdescription</h2>
+<h3 id='einführung'>Einführung</h3>
+<p>Es ist empfehlenswert, dass unten verlinkte <a href='https://huggingface.co/learn/nlp-course/chapter7/2'>Tutorial</a> als Vorlage und Hilfestellung zu verwenden.</p>
+<h3 id='ziele'>Ziele</h3>
+<p>Das Ziel ist es, das Sprachmodell <code>bert-base-cased</code> für Named Entity Recognition (NER) zu feintunen. Im Endeffekt soll das Modell zwischen Personen, Organisationen, Orten und MISC klassifizieren können. Dazu soll der <a href='https://huggingface.co/datasets/conllpp'>conllpp-Datensatz</a> verwendet werden.</p>
+<h3 id='voraussetzungen'>Voraussetzungen</h3>
+<ul>
+<li>Kenntnis von Markdown, LaTeX und Grundkenntnisse in R und Python</li>
+<li>funktionstüchtige Installation von R, RStudio, Python auf eurem Rechner, virtueller Maschine etc.</li>
+<li>Kenntnis von grundlegenden Methoden der Wahrscheinlichkeitstheorie.</li>
+<li>Die Verwendung von Jupyter Notebooks ist empfehlenswert, aber nicht erforderlich.</li>
+
+</ul>
+<p>Außerdem werden folgende Python-Libraries benötigt:</p>
+<pre><code class='language-shell' lang='shell'>pip install torch --index-url https://download.pytorch.org/whl/cpu  # Wenn eine CPU verwendet wird und keine NVIDIA-GPU vorhanden ist
+pip install torch  # Wenn eine NVIDIA-GPU vorhanden ist
+pip install datasets transformers seqeval numpy
+</code></pre>
+<h3 id='aufgabe'>Aufgabe</h3>
+<p>Das Sprachmodell Bert soll mittels dem <a href='https://huggingface.co/datasets/conllpp'>conllpp-Datensatz</a> auf Named Entity Recognition gefeintuned werden. Das fertige Modell soll dabei Personen, Organisationen, Orte und MISC klassifizieren können. Gehe dabei wie folgt vor:</p>
+<ol start='' >
+<li>Lade den <a href='https://huggingface.co/datasets/conllpp'>conllpp-Datensatz</a> aus dem HuggingFace-Repository und den Tokenizer für das Sprachmodell <code>bert-base-cased</code> in deinem Notebook herunter.</li>
+<li>Lade das Sprachmodell <code>bert-base-cased</code> herunter. Achtung: Die Anzahl der NER-TAGS und die Zuordnung von den NER-TAGS zu den Indezes und umgekehrt beim Laden des Modells mitgegeben werden.</li>
+<li>Erstelle eine Funktion <code>tokenize_and_align_labels</code> wie im Tutorial. Diese soll im Endeffekt (In Kombination mit der Funtion <code>map</code>) den gesamten Datensatz tokenizen. Zusätzlich soll die Methode Labels (=NER-TAGS) und den entsprechenden Tokens zuweisen. Da wir Tokens klassifizieren, und ein Wort oft in mehrere Tokens aufgeteilt wird, müssen wir auch zwischen dem ersten Token eines Wort und den anderen unterscheiden. Das ist wegen der Fehlerberechnung notwendig, da wir nicht mehrere Tokens desselben Worts berücksichtigen wollen. Deshalb muss die Funktion auch diese Vorgehensweise implementieren.</li>
+<li>Erstelle einen Data Collator, der dafür sorgt, dass jeder Input im selben Batch dieselbe Länge hat.</li>
+<li>Erstelle die Fehlerfunktion.</li>
+<li>Trainiere das Modell mittels der <code>Trainer</code>-Klasse. Je nach dem, ob man eine NVIDIA-Grafikkarte besitzt oder nicht, ist es empfehlenswert, mit den <em>Hyperparametern</em> <code>learning_rate</code>, <code>batch_size</code> und <code>num_train_epochs</code> herumzuspielen.</li>
+<li>Teste dein Modell mit einer <em>pipeline</em> aus der <em>transformers</em>-Library.</li>
+
+</ol>
+<h3 id='abgabe'>Abgabe</h3>
+<p>Das Protokoll ist als PDF-Dokument und Markdown-File mit ausführbarem Code abzugeben.</p>
+<h3 id='bewertung'>Bewertung</h3>
+<p>Gruppengrösse: 1 Person</p>
+<h3 id='anforderungen-überwiegend-erfüllt'>Anforderungen überwiegend erfüllt</h3>
+<ul>
+<li>Aktuelle Markdown- oder LaTeX-Protokollvorlage aus Github bzw. Moodle verwendet</li>
+<li>Grundlegende Beschreibung aller wichtigen Begriffe und Methoden</li>
+<li>Dokumentation aller Arbeitsschritte</li>
+
+</ul>
+<h3 id='anforderungen-vollständig-erfüllt'>Anforderungen vollständig erfüllt</h3>
+<ul>
+<li>Verwendung über das Mindestmaß hinausgehender Methoden und Algorithmen</li>
+<li>Verbale Beschreibung und Erklärung aller angeführter Begriffe und deren Anwendung in konkreten Beispielen in vollständigen deutschen Sätzen</li>
+<li>Funktionierendes NER-Modell</li>
+
+</ul>
+<h3 id='quellen'>Quellen</h3>
+<p><a href='https://huggingface.co/learn/nlp-course/chapter7/2' target='_blank' class='url'>https://huggingface.co/learn/nlp-course/chapter7/2</a></p>
+</body>
+</html>
