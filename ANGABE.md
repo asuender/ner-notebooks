@@ -30,7 +30,7 @@ pip install datasets transformers seqeval numpy
 Das Sprachmodell Bert soll mittels dem [conllpp-Datensatz](https://huggingface.co/datasets/conllpp) auf Named Entity Recognition gefeintuned werden. Das fertige Modell soll dabei Personen, Organisationen, Orte und MISC klassifizieren können. Gehe dabei wie folgt vor:
 
 1. Lade den [conllpp-Datensatz](https://huggingface.co/datasets/conllpp) aus dem HuggingFace-Repository und den Tokenizer für das Sprachmodell `bert-base-cased` in deinem Notebook herunter.
-2. Lade das Sprachmodell `bert-base-cased` herunter. Achtung: Die Anzahl der NER-TAGS und die Zuordnung von den NER-TAGS zu den Indezes und umgekehrt beim Laden des Modells mitgegeben werden.
+2. Lade das Sprachmodell `bert-base-cased` herunter. Achtung: Die Anzahl der NER-TAGS und die Zuordnung von den NER-TAGS zu den Indezes und umgekehrt müssen beim Laden des Modells mitgegeben werden.
 3. Erstelle eine Funktion `tokenize_and_align_labels` wie im Tutorial. Diese soll im Endeffekt (In Kombination mit der Funtion `map`) den gesamten Datensatz tokenizen. Zusätzlich soll die Methode Labels (=NER-TAGS) und den entsprechenden Tokens zuweisen. Da wir Tokens klassifizieren, und ein Wort oft in mehrere Tokens aufgeteilt wird, müssen wir auch zwischen dem ersten Token eines Wort und den anderen unterscheiden. Das ist wegen der Fehlerberechnung notwendig, da wir nicht mehrere Tokens desselben Worts berücksichtigen wollen. Deshalb muss die Funktion auch diese Vorgehensweise implementieren.
 4. Erstelle einen Data Collator, der dafür sorgt, dass jeder Input im selben Batch dieselbe Länge hat.
 5. Erstelle die Fehlerfunktion.
